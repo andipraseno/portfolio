@@ -1,0 +1,20 @@
+name: remote ssh pull
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Populus to VPS
+      uses: appleboy/ssh-action@master
+      with:
+        host: '103.23.199.38'
+        username: 'actasys'
+        password: 'Sekampung123!'
+        script: 'cd /opt/lampp/htdocs/populus && ./deployer.sh'
